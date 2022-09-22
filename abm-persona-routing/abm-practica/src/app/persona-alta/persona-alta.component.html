@@ -1,0 +1,37 @@
+<app-header [title]=" !isEdit ? 'Alta persona' : 'Editar persona'" [subtitle]="'Ingresa los datos'"></app-header>
+<div class="container py-5">
+    <form #personaForm="ngForm">
+        <div class="mb-3">
+          <label for="inputNombre" class="form-label">Nombre</label>
+          <input type="text" class="form-control" id="inputNombre" aria-describedby="inputNombre" name="nombre"
+          [(ngModel)]="persona.nombre"
+          #nombre="ngModel"
+          required>
+          <div *ngIf="nombre.touched && nombre.invalid" class="alert alert-danger">
+            Nombre es requerido,complete el campo
+        </div>
+        </div>
+        <div class="mb-3">
+          <label for="inputApellido" class="form-label">Apellido</label>
+          <input type="text" class="form-control" id="inputApellido" name="apellido"
+          [(ngModel)]="persona.apellido"
+          #apellido = "ngModel"
+          required>
+          <div *ngIf="apellido.touched && apellido.invalid" class="alert alert-danger">
+            Apellido es requerido,complete el campo
+          </div>
+        </div>
+        <div class="mb-3">
+            <label for="inputEdad" class="form-label">Edad</label>
+            <input type="text" class="form-control" id="inputEdad"
+            [(ngModel)]="persona.edad"
+            #edad = "ngModel"
+            name="edad">
+          </div>
+        <button type="submit" class="btn btn-outline-primary" *ngIf="!isEdit" (click)="guardar()">Guardar</button>
+        <button type="submit" class="btn btn-outline-success" *ngIf="isEdit" (click)="editar()">Editar</button>
+        <button type="button" class="btn btn-outline-danger" routerLinkActive="actived" routerLink="/home">Cancelar</button>
+      </form>
+</div>
+
+{{persona|json}}
