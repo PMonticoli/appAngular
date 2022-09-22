@@ -1,0 +1,33 @@
+<app-header [title]="'Listado de artículos'" [subtitle]="'Informacíon de artículos'"></app-header>
+<div class="container">
+    <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Codigo</th>
+            <th scope="col">Nombre</th>
+            <th scope="col">Precio</th>
+            <th scope="col">Stock</th>
+            <th scope="col">Categoria</th>
+            <th scope="col">Eliminar</th>
+            <th scope="col">Editar</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let articulo of listado;">
+            <th scope="row">{{articulo.id}}</th>
+            <td>{{articulo.codigo}}</td>
+            <td>{{articulo.nombre}}</td>
+            <td>{{articulo.precio}}</td>
+            <td>{{articulo.stock}}</td>
+            <td>{{articulo.idCategoria}}</td>
+            <td>
+                <app-baja-articulo [articulo]="articulo" (onEliminado)="actualizarListado()"></app-baja-articulo>
+            </td>
+            <td>
+              <app-editar-articulo [articulo]="articulo"></app-editar-articulo>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+</div>

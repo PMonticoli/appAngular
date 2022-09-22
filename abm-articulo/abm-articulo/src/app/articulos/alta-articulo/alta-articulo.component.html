@@ -1,0 +1,68 @@
+<app-header [title]="!isEdit ? 'Alta artículo' : 'Editar Artículo'" [subtitle]="'Ingrese los datos'"></app-header>
+<div class="container">
+    <form #articuloForm="ngForm">
+        <div class="mb-3">
+          <label for="inputCodigo" class="form-label">Codigo</label>
+          <input type="text" class="form-control" id="inputCodigo" aria-describedby="inputCodigo" name="codigo"
+          [(ngModel)]="articulo.codigo"
+          #codigo="ngModel"
+          required
+          [class.is-invalid]="codigo.touched&&codigo.invalid"
+          >
+          <div *ngIf="codigo.touched&&codigo.invalid" class="alert alert-danger">
+            El codigo es requerido,complete el campo.
+          </div>
+        </div>
+        <div class="mb-3">
+            <label for="inputNombre" class="form-label">Nombre</label>
+            <input type="text" class="form-control" id="inputNombre" aria-describedby="inputNombre" name="nombre"
+            [(ngModel)]="articulo.nombre"
+            #nombre="ngModel"
+            [class.is-invalid]="nombre.touched&&nombre.invalid"
+            required
+            >
+            <div *ngIf="nombre.touched&&nombre.invalid" class="alert alert-danger">
+                El nombre es requerido,complete el campo.
+              </div>
+          </div>
+          <div class="mb-3">
+            <label for="inputPrecio" class="form-label">Precio</label>
+            <input type="text" class="form-control" id="inputPrecio" aria-describedby="inputPrecio" name="precio"
+            [(ngModel)]="articulo.precio"
+            #precio="ngModel"
+            [class.is-invalid]="precio.touched&&precio.invalid"
+            required
+            >
+            <div *ngIf="precio.touched&&precio.invalid" class="alert alert-danger">
+                El precio es requerido,complete el campo.
+              </div>
+          </div>
+          <div class="mb-3">
+            <label for="inputStock" class="form-label">Stock</label>
+            <input type="text" class="form-control" id="inputStock" aria-describedby="inputStock" name="stock"
+            [(ngModel)]="articulo.stock"
+            #stock="ngModel"
+            [class.is-invalid]="stock.touched&&stock.invalid"
+            required
+            >
+            <div *ngIf="stock.touched&&stock.invalid" class="alert alert-danger">
+                El stock es requerido,complete el campo.
+            </div>
+          </div>
+          <div class="mb-3">
+            <label for="inputCategoria" class="form-label">Categoria</label>
+            <select id="inputCategoria" class="form-select" name="categoria" 
+            [(ngModel)]="articulo.idCategoria"
+            #categoria = "ngModel"
+            >
+              <option *ngFor="let categ of listadoCategorias" [value]="categ.id">
+                {{categ.nombre}}
+              </option>
+            </select>
+          </div>
+        <button type="submit" class="btn btn-outline-primary" *ngIf="!isEdit" (click)="guardar()">Guardar</button>
+        <button type="submit" class="btn btn-outline-success" *ngIf="isEdit" (click)="editar()">Editar</button>
+        <button type="button" class="btn btn-outline-danger" routerLinkActive="actived" routerLink="/home">Cancelar</button>
+      </form>
+    
+</div>
