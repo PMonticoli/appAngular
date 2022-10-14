@@ -1,0 +1,74 @@
+<app-header [title]="'Alta ordenes'" [subtitle]="'Ingrese los datos'"></app-header>
+<div class="container">
+    <form #formOrden="ngForm">
+        <div class="mb-3">
+          <label for="inputNombre" class="form-label">Nombre</label>
+          <input type="text" class="form-control" id="inputNombre" aria-describedby="inputNombre" name="nombre"
+          [(ngModel)]="orden.nombre"
+          #nombre="ngModel"
+          required
+          [class.is-invalid]="nombre.touched&&nombre.invalid"
+          >
+          <div *ngIf="nombre.touched&&nombre.invalid" class="alert alert-danger">
+            Nombre es requerido,complete el campo
+          </div>
+        </div>
+        <div class="mb-3">
+            <label for="inputDescripcion" class="form-label">Descripción</label>
+            <input type="text" class="form-control" id="inputDescripcion" aria-describedby="inputDescripcion" name="descripcion"
+            [(ngModel)]="orden.descripcion"
+            #descripcion="ngModel"
+            required
+            [class.is-invalid]="descripcion.touched&&descripcion.invalid"
+            >
+            <div *ngIf="descripcion.touched&&descripcion.invalid" class="alert alert-danger">
+                Descripcion es requerido,complete el campo
+            </div>            
+          </div>
+          <div class="mb-3">
+            <label for="inputMarca" class="form-label">Marca</label>
+            <select id="inputMarca" class="form-select" name="marca"
+            [(ngModel)]="orden.marcaId"
+            #marca = "ngModel"
+            [class.is-invalid]="marca.touched&&marca.invalid"
+            >
+              <option *ngFor="let marc of listadoMarcas" [value]="marc.id">
+                {{marc.nombre}}
+              </option>
+            </select>
+            <div *ngIf="marca.touched&&marca.invalid" class="alert alert-danger">
+                Marca es requerido,complete el campo
+            </div>   
+          </div>
+          <div class="mb-3">
+            <label for="inptCosto" class="form-label">Costo</label>
+            <input type="text" class="form-control" id="inptCosto" aria-describedby="inptCosto" name="costo"
+            [(ngModel)]="orden.costo"
+            #costo="ngModel"
+            required
+            [class.is-invalid]="costo.touched&&costo.invalid"
+            > 
+            <div *ngIf="costo.touched&&costo.invalid" class="alert alert-danger">
+                Costo es requerido,complete el campo
+            </div>   
+          </div>
+          <div class="mb-3 form-check">
+            <input #activo type="checkbox" name="inputActivo" class="form-check-input" id="inputActivo" 
+            [(ngModel)]="orden.activo" 
+            (change)="cambioCheck(activo.checked)"
+            name="inputActivo"
+            #inputActivo="ngModel"
+            />
+            <label class="form-check-label" for="inputActivo">Descuento</label>
+          </div>
+          <div class="mb-3" *ngIf="activo.checked">
+            <label for="inputDescuento" class="form-label">Descuento</label>
+            <input type="text" class="form-control" id="inputDescuento" aria-describedby="inputDescuento" name="desc"
+            [(ngModel)]="orden.descuento"
+            #desc="ngModel"
+            >        
+          </div>
+        <button type="submit" class="btn btn-outline-primary" (click)="guardar()">Guardar</button>
+        <button type="submit" class="btn btn-outline-danger" routerLinkActive="active" routerLink="/home">Cancelar</button>
+      </form>
+</div>
