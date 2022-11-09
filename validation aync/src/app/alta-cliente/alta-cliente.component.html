@@ -1,0 +1,55 @@
+<app-header [title]="'Alta cliente'" [subtitle]="'Ingrese los datos'"></app-header>
+<div class="container py-3">
+    <form [formGroup]="formulario">
+        <div class="mb-3">
+          <label for="inputId" class="form-label">Id</label>
+          <input type="text" class="form-control" id="inputId" formControlName="id"
+          [class.is-invalid]="controlId.touched&& controlId.hasError('required')">
+          <span *ngIf="controlId.touched && controlId.hasError('required')"
+          class="invalid-feedback">
+            Id es requerido
+          </span>
+        </div>
+        <div class="mb-3">
+            <label for="inputNombre" class="form-label">Nombre</label>
+            <input type="text" class="form-control" id="inputNombre" formControlName="nombre"
+            [class.is-invalid]="controlNombre.touched&& controlNombre.hasError('nameAlreadyExists')">
+            <span class="invalid-feedback">
+              El nombre ingresado ya existe
+            </span>
+          </div>
+          <div class="mb-3">
+            <label for="inputTelefono" class="form-label">Telefono</label>
+            <input type="text" class="form-control" id="inputTelefono" formControlName="telefono"
+            [class.is-invalid]="controlTelefono.touched&& controlTelefono.hasError('phoneAlreadyExists')">
+            <span *ngIf="controlTelefono.touched && controlTelefono.hasError('phoneAlreadyExists')"
+            class="invalid-feedback">
+            El telefono ingresado ya existe
+            </span>
+          </div>
+          <div class="mb-3">
+            <label for="inputSaldoDeudor" class="form-label">Saldo deudor</label>
+            <input type="text" class="form-control" id="inputSaldoDeudor" formControlName="saldoDeudor"
+            [class.is-invalid]="controlSaldo.touched&& controlSaldo.hasError('required')">
+            <span *ngIf="controlSaldo.touched && controlSaldo.hasError('required')"
+            class="invalid-feedback">
+              Saldo es requerido
+            </span>
+          </div>
+          <div class="mb-3">
+            <label for="inputLimite" class="form-label">Limite fiado</label>
+            <input type="text" class="form-control" id="inputLimite" formControlName="limiteFiado">
+          </div>
+          <div class="col-auto">
+            <label for="idDespacho">Despacho</label>
+            <select class="form-select" id="autoSizingSelect" formControlName="idDespacho">
+              <option value="1">Retiro en local</option>
+              <option value="2">Delivery a pie</option>
+              <option value="3">Delivery en moto</option>
+            </select>
+          </div>
+        <button type="submit" class="btn btn-outline-primary" (click)="guardar()">Guardar</button>
+        <button type="button" class="btn btn-outline-danger ms-3" routerLink="/home">Cancelar</button>
+      </form>
+
+</div>

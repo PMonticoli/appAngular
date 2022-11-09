@@ -1,0 +1,23 @@
+<app-header [title]="'Lista de clientes'"></app-header>
+<table class="table">
+    <thead>
+      <tr>
+        <th scope="col">id</th>
+        <th scope="col">Nombre</th>
+        <th scope="col">Telefono</th>
+        <th scope="col">Saldo Deudor</th>
+        <th scope="col">Limite Fiado</th>
+        <th scope="col">Despacho</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let cliente of listado"> 
+        <th scope="row">{{cliente.id}}</th>
+        <td>{{cliente.nombre}}</td>
+        <td>{{cliente.telefono}}</td>
+        <td>{{cliente.saldoDeudor}}</td>
+        <td>{{cliente.limiteFiado}}</td>
+        <td>{{cliente.idDespacho}}</td>
+      </tr>
+    </tbody>
+  </table>

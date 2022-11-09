@@ -1,0 +1,60 @@
+<form [formGroup]="formulario">
+    <div class="mb-3">
+        <label for="inputNombre" class="form-label">Nombre</label>
+        <input required type="text" class="form-control" id="inputNombre" formControlName="nombre"
+        [class.invalido]="controlNombre.touched && controlNombre.hasError('required')"
+        [class.invalido]="controlNombre.touched && controlNombre.hasError('nombreExiste')">
+        <div *ngIf="controlNombre.touched && controlNombre.hasError('required')">
+            Nombre es requerido
+        </div>
+        <div *ngIf="controlNombre.touched && controlNombre.hasError('nombreExiste')">
+          El nombre ingresado ya existe 
+      </div>
+    </div>
+    <div class="mb-3">
+        <label for="inputApellisdo" class="form-label">Apellido</label>
+        <input required type="text" class="form-control" id="inputApellido"
+        formControlName="apellido"
+        [class.invalido]="controlApellido.touched && controlApellido.hasError('required')"
+        [class.invalido]="controlApellido.touched && controlApellido.hasError('apellidoExiste')">
+        <div *ngIf="controlApellido.touched && controlApellido.hasError('required')">
+            Apellido es requerido
+        </div>
+        <div *ngIf="controlApellido.touched && controlApellido.hasError('apellidoExiste')">
+          El apellido ya existe
+      </div>
+ 
+    </div>
+    <div class="mb-3">
+        <label for="inputEdad" class="form-label">Edad</label>
+        <input type="number" class="form-control" id="inputEdad" formControlName="edad">
+    </div>
+    <div class="mb-3">
+      <label for="selectPais" class="form-label">Pais</label>
+      <select id="selectPais" class="form-select" formControlName="paisId"
+      [class.is-invalid]="controlPais.touched && controlPais.hasError('required')">
+        <option *ngFor="let pais of paises" [value]="pais.id">{{ pais.nombre }}</option>
+      </select>
+      <div *ngIf="controlPais.touched && controlPais.hasError('required')">
+        Pais es requerido
+      </div>
+    </div>
+
+
+    <div class="mb-3">
+      <label for="selectCiudad" class="form-label">Pais</label>
+      <select id="selectCiudad" class="form-select" formControlName="ciudadId">
+        <option *ngFor="let c of ciudades" [value]="c.id">{{ c.nombre }}</option>
+      </select>
+    </div>
+    <button type="submit" class="btn btn-primary" (click)="guardar()">Guardar</button>
+    <button type="button" class="btn btn-secondary" (click)="cancelar()">Cancelar</button>
+</form>
+
+
+<p appProbando>Hola gino</p>
+
+<!-- <app-proyeccion-contenido>
+  <app-persona-listado></app-persona-listado>
+
+</app-proyeccion-contenido> -->
