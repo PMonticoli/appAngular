@@ -1,0 +1,59 @@
+<div class="container">
+    <form [formGroup]="formulario">
+      <div class="mb-3">
+        <label for="inputNombre" class="form-label">Nombre</label>
+        <input type="text" class="form-control" id="inputNombre" formControlName="nombre"
+        [class.is-invalid]="controlNombre.touched&&controlNombre.hasError('required')"
+        [class.is-invalid]="controlNombre.touched&&controlNombre.hasError('nameAlReadyExists')"
+        />
+        <span *ngIf="controlNombre.touched&&controlNombre.hasError('required')">
+          Nombre es requerido
+        </span>
+        <span *ngIf="controlNombre.touched&&controlNombre.hasError('nameAlReadyExists')">
+          Nombre ya existe
+        </span>
+      </div>
+      <div class="mb-3">
+        <label for="inputApellido" class="form-label">Apellido</label>
+        <input type="text" class="form-control" id="inputApellido" formControlName="apellido" 
+        [class.is-invalid]="controlApellido.touched&&controlApellido.hasError('required')"
+        [class.is-invalid]="controlApellido.touched&&controlApellido.hasError('lastNameAlReadyExists')"
+        />
+        <span *ngIf="controlApellido.touched&&controlApellido.hasError('required')">
+          Apellido es requerido
+        </span>
+        <span *ngIf="controlApellido.touched&&controlApellido.hasError('lastNameAlReadyExists')">
+          Apellido ya existe
+        </span>
+      </div>
+      <div class="mb-3">
+        <label for="inputEdad" class="form-label">Edad</label>
+        <input type="text" class="form-control" id="inputEdad" formControlName="edad"
+        [class.is-invalid]="controlEdad.touched&&controlEdad.hasError('required')"/>
+        <span *ngIf="controlEdad.touched&&controlEdad.hasError('required')">
+          Edad es requerido
+        </span>
+      </div>
+    
+      <div class="col-md-4">
+        <label for="inputPais" class="form-label">Pais</label>
+        <select id="inputPais" class="form-select" formControlName="paisId"
+        [class.is-invalid]="controlPais.touched&&controlPais.hasError('required')">
+          <option selected *ngFor="let p of paises" [value]="p.id">{{p.nombre}}</option>
+        </select>
+        <span *ngIf="controlPais.touched&&controlPais.hasError('required')">
+          Pais es requerido
+        </span>
+      </div>
+
+      <div class="col-md-4">
+        <label for="inputPais" class="form-label">Ciudad</label>
+        <select id="inputPais" class="form-select" formControlName="ciudadId">
+          <option selected *ngFor="let c of ciudades" [value]="c.id">{{c.nombre}}</option>
+        </select>
+      </div>
+      <button type="submit" class="btn btn-primary" *ngIf="!isEdit" (click)="guardar()">Guardar</button>
+      <button type="submit" class="btn btn-primary " *ngIf="isEdit" (click)="editar()">Editar</button>
+      <button type="submit" class="btn btn-danger ms-3" routerLink="/listado-persona">Cancelar</button>
+    </form>
+</div>
