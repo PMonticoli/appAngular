@@ -125,8 +125,21 @@ export class AltaPersonaComponent implements OnInit {
       })
     )
   }
-
   
+  //DOS FORMAS DISTINTAS DE HACER METODO CARGAR FORM PARA EDICION
+
+  // private cargar () : void{
+  //   const id = this.activatedRoute.snapshot.params['id'];
+  //   this.subscription.add(
+  //     this.servicioPersona.getPersonaById(id).subscribe({
+  //         next: (respuesta) => {
+  //             this.persona = respuesta as Persona;
+  //             this.formulario.patchValue(this.persona);
+  //         },
+  //         error: () => alert('Error al obtener la atención'),
+  //     })
+  // );
+  // }
   cargar () : void{
     this.activatedRoute.params.subscribe(
       e=>{
