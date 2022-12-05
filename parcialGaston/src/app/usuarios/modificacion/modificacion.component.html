@@ -1,0 +1,31 @@
+<h2>Editar perfil de usuario</h2>
+
+<form [formGroup]="formulario">
+    <div>
+        <label for="nombre">Nombre:</label>
+        <input type="text" id="nombre" class="form-control" formControlName="nombre">
+    <span *ngIf="formulario.get('nombre')?.touched && formulario.get('nombre')?.hasError('required')">Nombre Requerido</span>
+
+    </div>
+    <div>
+        <label for="email">EMail:</label>
+        <input type="text" id="email" class="form-control" formControlName="email">
+        <span *ngIf="formulario.get('email')?.touched && (formulario.get('nombre')?.hasError('required') 
+        || formulario.get('email')?.hasError('email'))">Email Requerido</span>
+    </div>
+    <div>
+        <label for="telefono">telefono:</label>
+        <input type="text" id="telefono" class="form-control" formControlName="telefono">
+    </div>
+    <div>
+        <label for="direccion">direccion:</label>
+        <input type="text" id="direccion" class="form-control" formControlName="direccion">
+        <span *ngIf="formulario.get('direccion')?.touched && formulario.get('direccion')?.hasError('required')">Direccion Requerida</span>
+    </div>
+
+    <span *ngIf="formulario.invalid && formulario.touched">Formulario Invalido</span>
+</form>
+
+
+<button class="btn btn-primary" (click)="guardarEdicion()">Modificar</button>
+<button class="btn btn-danger" (click)="cancelar()">Cancelar</button>
